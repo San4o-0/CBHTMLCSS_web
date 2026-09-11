@@ -43,6 +43,6 @@ npx prettier --write .
 
 ## Посилання
 
-- GitHub: https://github.com/<username>/<repository>
-- GitHub Pages: https://<username>.github.io/<repository>/
-- Vercel: https://<project>.vercel.app/
+- GitHub: https://github.com/San4o-0/CBHTMLCSS_web
+- GitHub Pages: https://san4o-0.github.io/CBHTMLCSS_web/Lab1/
+- Vercel: https://cbhtmlcss-weblab1.vercel.app/
