@@ -10,18 +10,12 @@ Lab1/
 ├── index.html
 ├── styles.css
 ├── script.js
-├── package.json
-├── eslint.config.js
-├── .prettierrc.json
-├── .editorconfig
-├── .gitignore
-├── .vscode/
-│   ├── settings.json
-│   └── extensions.json
-├── .agents/skills/frontend-review/SKILL.md
-├── AGENTS.md
 └── README.md
 ```
+
+Спільні налаштування (`package.json`, `eslint.config.js`, `.prettierrc.json`, `.editorconfig`,
+`.gitignore`, `.vscode/`, `AGENTS.md`, `.agents/`) лежать у корені репозиторію і діють для всіх
+лабораторних.
 
 ## Локальний запуск
 
@@ -34,6 +28,8 @@ npx serve .
 ```
 
 ## Перевірка коду
+
+Команди запускаються з кореня репозиторію:
 
 ```bash
 npm install
