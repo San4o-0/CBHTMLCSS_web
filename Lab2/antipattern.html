@@ -1,0 +1,202 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ЛР-2 — Тарифні плани (антипатерн)</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    />
+    <style>
+      body {
+        margin: 0;
+        background-color: #f8fafc;
+      }
+
+      #wrapper {
+        padding: 64px 16px;
+        text-align: center;
+      }
+
+      #title {
+        margin: 0 0 8px;
+        color: #0f172a;
+        font-family: 'Inter', sans-serif;
+        font-size: 40px;
+        font-weight: 700;
+      }
+
+      #subtitle {
+        margin: 0 0 32px;
+        color: #64748b;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+      }
+
+      #basic {
+        display: inline-block;
+        width: 300px;
+        margin: 12px;
+        padding: 32px 24px;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        background-color: #ffffff;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      #pro {
+        position: relative;
+        display: inline-block;
+        width: 300px;
+        margin: 12px;
+        padding: 32px 24px;
+        border: 2px solid #2563eb !important;
+        border-radius: 12px;
+        background-color: #ffffff;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      #enterprise {
+        display: inline-block;
+        width: 300px;
+        margin: 12px;
+        padding: 32px 24px;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        background-color: #ffffff;
+        text-align: left;
+        vertical-align: top;
+      }
+
+      #basic .name,
+      #pro .name,
+      #enterprise .name {
+        margin-bottom: 16px;
+        color: #2563eb;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: 1.4px;
+        text-transform: uppercase;
+      }
+
+      #basic .price,
+      #pro .price,
+      #enterprise .price {
+        margin-bottom: 16px;
+        color: #0f172a;
+        font-family: 'Inter', sans-serif;
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      #basic .month,
+      #pro .month,
+      #enterprise .month {
+        color: #64748b;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 400;
+      }
+
+      #basic .item,
+      #pro .item,
+      #enterprise .item {
+        margin-bottom: 8px;
+        color: #64748b;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+      }
+
+      #pro .badge {
+        position: absolute;
+        top: -12px;
+        left: 24px;
+        padding: 2px 8px;
+        border-radius: 8px;
+        background-color: #f59e0b;
+        color: #0f172a;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+        font-weight: 600;
+      }
+
+      .button1 {
+        margin-top: 24px;
+        padding: 8px 16px;
+        border: 1px solid #2563eb;
+        border-radius: 12px;
+        color: #2563eb;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .button2 {
+        margin-top: 24px;
+        padding: 8px 16px;
+        border: 1px solid #2563eb;
+        border-radius: 12px;
+        background-color: #2563eb;
+        color: #ffffff;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+      }
+
+      .button3 {
+        margin-top: 24px;
+        padding: 8px 16px;
+        border: 1px solid #2563eb;
+        border-radius: 12px;
+        color: #2563eb;
+        font-family: 'Inter', sans-serif;
+        font-size: 16px;
+        font-weight: 600;
+        text-align: center;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="title">Наші тарифи</div>
+      <div id="subtitle">Оберіть план, який найкраще підходить для ваших завдань</div>
+
+      <div id="basic">
+        <div class="name">Basic</div>
+        <div class="price">$10 <span class="month">/ month</span></div>
+        <div class="item">✓ 1 User</div>
+        <div class="item">✓ 5GB Storage</div>
+        <div class="item">✓ Basic Support</div>
+        <div class="button1">Select</div>
+      </div>
+
+      <div id="pro">
+        <div class="badge">PRO • ACTIVE</div>
+        <div class="name">Pro</div>
+        <div class="price">$29 <span class="month">/ month</span></div>
+        <div class="item">✓ 5 Users</div>
+        <div class="item">✓ 50GB Storage</div>
+        <div class="item">✓ Priority Support</div>
+        <div class="button2">Get Started</div>
+      </div>
+
+      <div id="enterprise">
+        <div class="name">Enterprise</div>
+        <div class="price">$99 <span class="month">/ month</span></div>
+        <div class="item">✓ Unlimited</div>
+        <div class="item">✓ 1TB Storage</div>
+        <div class="item">✓ 24/7 Support</div>
+        <div class="button3" style="color: #2563eb">Contact</div>
+      </div>
+    </div>
+  </body>
+</html>

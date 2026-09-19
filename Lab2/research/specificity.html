@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4.3 Specificity</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 24px;
+      }
+
+      #title {
+        color: blue;
+      }
+
+      .a.b.c.d.e.f.g.h.i.j.k {
+        color: green;
+      }
+
+      .title {
+        color: orange;
+      }
+
+      p {
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>4.3 Specificity</h1>
+    <p id="title" class="title a b c d e f g h i j k">
+      Селектор тегу, класу, ID і ланцюжок з 11 класів
+    </p>
+  </body>
+</html>

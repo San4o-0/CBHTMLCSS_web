@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4.5 CSS Variables</title>
+    <style>
+      :root {
+        --card-bg: #ffffff;
+        --card-text: #0f172a;
+        --card-border: #e2e8f0;
+      }
+
+      body {
+        font-family: sans-serif;
+        padding: 24px;
+      }
+
+      .card {
+        max-width: 320px;
+        margin-bottom: 16px;
+        padding: 16px;
+        border: 1px solid var(--card-border);
+        border-radius: 12px;
+        background-color: var(--card-bg);
+        color: var(--card-text);
+      }
+
+      .dark-card {
+        --card-bg: #0f172a;
+        --card-text: #f8fafc;
+        --card-border: #334155;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>4.5 CSS Variables</h1>
+    <div class="card">Звичайна картка — змінні з :root</div>
+    <div class="card dark-card">Темна картка — змінні перевизначені в .dark-card</div>
+  </body>
+</html>

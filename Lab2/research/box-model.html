@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>4.1 Box Model</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        padding: 24px;
+      }
+
+      .box {
+        width: 200px;
+        height: 100px;
+        margin-bottom: 24px;
+        padding: 20px;
+        border: 10px solid #2563eb;
+        background-color: #dbeafe;
+      }
+
+      .content-box {
+        box-sizing: content-box;
+      }
+
+      .border-box {
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>4.1 Box Model</h1>
+    <div class="box content-box">content-box</div>
+    <div class="box border-box">border-box</div>
+  </body>
+</html>

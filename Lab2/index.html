@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ЛР-2 — Тарифні плани</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="pricing">
+      <div class="container">
+        <h1 class="pricing__title">Наші тарифи</h1>
+        <p class="pricing__lead">Оберіть план, який найкраще підходить для ваших завдань</p>
+
+        <div class="pricing__grid">
+          <article class="pricing-card">
+            <h2 class="pricing-card__name">Basic</h2>
+            <p class="pricing-card__price">$10 <span class="pricing-card__period">/ month</span></p>
+            <ul class="pricing-card__features">
+              <li>1 User</li>
+              <li>5GB Storage</li>
+              <li>Basic Support</li>
+            </ul>
+            <button class="btn btn--outline" type="button">Select</button>
+          </article>
+
+          <article class="pricing-card pricing-card--featured">
+            <span class="pricing-card__badge">PRO • ACTIVE</span>
+            <h2 class="pricing-card__name">Pro</h2>
+            <p class="pricing-card__price">$29 <span class="pricing-card__period">/ month</span></p>
+            <ul class="pricing-card__features">
+              <li>5 Users</li>
+              <li>50GB Storage</li>
+              <li>Priority Support</li>
+            </ul>
+            <button class="btn btn--primary" type="button">Get Started</button>
+          </article>
+
+          <article class="pricing-card">
+            <h2 class="pricing-card__name">Enterprise</h2>
+            <p class="pricing-card__price">$99 <span class="pricing-card__period">/ month</span></p>
+            <ul class="pricing-card__features">
+              <li>Unlimited</li>
+              <li>1TB Storage</li>
+              <li>24/7 Support</li>
+            </ul>
+            <button class="btn btn--outline" type="button">Contact</button>
+          </article>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
