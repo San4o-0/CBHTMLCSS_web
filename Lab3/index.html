@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cloudnest Pricing – Basic, Pro and Enterprise Plans</title>
+    <meta
+      name="description"
+      content="Compare Cloudnest cloud storage plans for teams: Basic for one user, Pro for five users with 50GB, and Enterprise with unlimited users and 1TB of storage."
+    />
+    <link rel="canonical" href="https://san4o-0.github.io/CBHTMLCSS_web/Lab3/" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="site-header__logo" href="./">Cloudnest</a>
+        <nav aria-label="Main">
+          <ul class="site-nav">
+            <li><a href="#plans">Plans</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#get-started">Get started</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1 class="hero__title">Cloud storage pricing for teams</h1>
+          <p class="hero__lead">
+            Compare the Basic, Pro and Enterprise plans by number of users, storage and support
+            level.
+          </p>
+        </div>
+      </section>
+
+      <section class="page-section" id="plans">
+        <div class="container">
+          <h2 class="section-title">Pricing plans</h2>
+
+          <div class="pricing__grid">
+            <article class="pricing-card">
+              <h3 class="pricing-card__name">Basic</h3>
+              <p class="pricing-card__price">
+                $10 <span class="pricing-card__period">/ month</span>
+              </p>
+              <ul class="pricing-card__features">
+                <li>1 user</li>
+                <li>5GB storage</li>
+                <li>Basic support</li>
+              </ul>
+              <a class="btn btn--outline" href="#get-started">Choose Basic plan</a>
+            </article>
+
+            <article class="pricing-card pricing-card--featured">
+              <p class="pricing-card__badge">Most popular</p>
+              <h3 class="pricing-card__name">Pro</h3>
+              <p class="pricing-card__price">
+                $29 <span class="pricing-card__period">/ month</span>
+              </p>
+              <ul class="pricing-card__features">
+                <li>5 users</li>
+                <li>50GB storage</li>
+                <li>Priority support</li>
+              </ul>
+              <a class="btn btn--primary" href="#get-started">Start Pro plan</a>
+            </article>
+
+            <article class="pricing-card">
+              <h3 class="pricing-card__name">Enterprise</h3>
+              <p class="pricing-card__price">
+                $99 <span class="pricing-card__period">/ month</span>
+              </p>
+              <ul class="pricing-card__features">
+                <li>Unlimited users</li>
+                <li>1TB storage</li>
+                <li>24/7 support</li>
+              </ul>
+              <a class="btn btn--outline" href="#get-started">Contact sales about Enterprise</a>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-section" id="faq">
+        <div class="container">
+          <h2 class="section-title">Frequently asked questions</h2>
+
+          <div class="faq__list">
+            <div class="faq__item">
+              <h3 class="faq__question">Can I change my plan later?</h3>
+              <p>
+                Yes. You can move to another plan at any time, and the new price applies from the
+                next billing month.
+              </p>
+            </div>
+
+            <div class="faq__item">
+              <h3 class="faq__question">What counts as a user?</h3>
+              <p>
+                A user is one person with their own login. Basic includes one user, Pro includes
+                five, and Enterprise has no limit.
+              </p>
+            </div>
+
+            <div class="faq__item">
+              <h3 class="faq__question">What is the difference in support?</h3>
+              <p>
+                Basic support answers by email on business days. Pro requests are handled first, and
+                Enterprise teams get support 24/7.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="page-section" id="get-started">
+        <div class="container">
+          <h2 class="section-title">Get started</h2>
+          <p class="signup__lead">
+            Leave your work email and the plan you are interested in, and we will send you access
+            details.
+          </p>
+
+          <form class="signup__form">
+            <label class="signup__label" for="email">Work email</label>
+            <input
+              class="signup__field"
+              id="email"
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            />
+
+            <label class="signup__label" for="plan">Plan</label>
+            <select class="signup__field" id="plan" name="plan">
+              <option value="basic">Basic</option>
+              <option value="pro" selected>Pro</option>
+              <option value="enterprise">Enterprise</option>
+            </select>
+
+            <button class="btn btn--primary signup__submit" type="submit">Request access</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2026 Cloudnest. A fictional product created for a university web development lab.</p>
+      </div>
+    </footer>
+  </body>
+</html>

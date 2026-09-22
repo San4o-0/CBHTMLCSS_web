@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="160" viewBox="0 0 480 160">
+  <rect width="480" height="160" fill="#f8fafc" />
+  <g font-family="sans-serif" font-size="16" font-weight="700" text-anchor="middle">
+    <rect x="20" y="30" width="130" height="100" rx="12" fill="#ffffff" stroke="#e2e8f0" />
+    <text x="85" y="75" fill="#2563eb">Basic</text>
+    <text x="85" y="100" fill="#0f172a">$10</text>
+    <rect x="175" y="22" width="130" height="116" rx="12" fill="#ffffff" stroke="#2563eb" stroke-width="2" />
+    <text x="240" y="75" fill="#2563eb">Pro</text>
+    <text x="240" y="100" fill="#0f172a">$29</text>
+    <rect x="330" y="30" width="130" height="100" rx="12" fill="#ffffff" stroke="#e2e8f0" />
+    <text x="395" y="75" fill="#2563eb">Enterprise</text>
+    <text x="395" y="100" fill="#0f172a">$99</text>
+  </g>
+</svg>
