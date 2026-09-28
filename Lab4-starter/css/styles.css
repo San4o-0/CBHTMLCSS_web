@@ -5,13 +5,12 @@
   src: url("../fonts/inter-latin.woff2") format("woff2");
   font-weight: 400 700;
   font-style: normal;
-  font-display: swap;
 }
 
 :root {
   --ink: #111827;
-  --ink-muted: #646b78;
-  --ink-soft: #5b6370;
+  --ink-muted: #939ba7;
+  --ink-soft: #717985;
   --brand: #4f46e5;
   --brand-dark: #4338ca;
   --brand-tint: #eef2ff;
@@ -38,31 +37,8 @@ body {
   background: var(--surface);
 }
 
-html {
-  scroll-padding-top: 92px;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
-}
-
-:focus-visible {
-  outline: 2px solid var(--brand);
-  outline-offset: 3px;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  padding: 0;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
+:focus {
+  outline: none;
 }
 
 img {
@@ -164,7 +140,7 @@ a {
   font-size: 15px;
   font-weight: 500;
   color: #374151;
-  text-decoration: none;
+  cursor: pointer;
 }
 
 .nav-item:hover {
@@ -441,10 +417,6 @@ a {
   color: #ffffff;
 }
 
-.trial :focus-visible {
-  outline-color: #ffffff;
-}
-
 .trial__lead {
   color: #dcd9fb;
   max-width: 46ch;
@@ -456,14 +428,6 @@ a {
   flex-wrap: wrap;
   justify-content: center;
   gap: 12px;
-}
-
-.trial__form[hidden] {
-  display: none;
-}
-
-.trial__status {
-  margin: 0;
 }
 
 .trial__input {
@@ -525,10 +489,8 @@ a {
 
 .social a {
   display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
+  width: 18px;
+  height: 18px;
 }
 
 .legal {

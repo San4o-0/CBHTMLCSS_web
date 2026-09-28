@@ -1,20 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>About FlowTask – A Small Team Building One Project Board</title>
-  <meta name="description" content="FlowTask is built by twelve people in Kyiv, Lisbon and Toronto. Learn how we build and ship one product: a task board with automations and reporting.">
-  <link rel="canonical" href="https://san4o-0.github.io/CBHTMLCSS_web/Lab4/about.html">
-  <meta property="og:title" content="About FlowTask – A Small Team Building One Project Board">
-  <meta property="og:description" content="Twelve people in Kyiv, Lisbon and Toronto building one product: a task board with automations and reporting.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://san4o-0.github.io/CBHTMLCSS_web/Lab4/about.html">
-  <meta property="og:image" content="https://san4o-0.github.io/CBHTMLCSS_web/Lab4/img/hero.jpg">
+  <title>FlowTask</title>
   <link rel="icon" href="img/logo.svg" type="image/svg+xml">
-  <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
-  <script src="js/main.js" defer></script>
+  <script src="js/main.js"></script>
 </head>
 <body>
 
@@ -22,17 +14,17 @@
   <div class="site-header__inner">
     <img class="logo" src="img/logo.svg" alt="FlowTask" width="132" height="28">
 
-    <nav class="nav" aria-label="Main">
-      <a class="nav-item" href="index.html#features">Product</a>
-      <a class="nav-item" href="index.html#pricing">Pricing</a>
-      <a class="nav-item" href="index.html#faq">FAQ</a>
-      <a class="nav-item" href="index.html#trial">Trial</a>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-item">Product</div>
+      <div class="nav-item">Pricing</div>
+      <div class="nav-item">FAQ</div>
+      <div class="nav-item">Trial</div>
     </nav>
 
     <div class="site-header__actions">
       <a class="link-quiet" href="index.html">Home</a>
-      <a class="link-quiet" href="#">Sign in</a>
-      <a class="btn btn--primary" href="index.html#trial">Get started</a>
+      <a class="link-quiet" href="#" aria-label="Sign in">Sign in</a>
+      <button class="btn btn--primary" role="button" aria-label="Get started button" id="header-cta">Get started</button>
     </div>
   </div>
 </header>

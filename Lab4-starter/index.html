@@ -1,72 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>FlowTask – Project Management for Teams That Ship Every Week</title>
-  <meta name="description" content="FlowTask boards, automations and reports for teams that ship every week. Basic, Pro and Enterprise plans from $10 per month, with a free 14-day trial.">
-  <link rel="canonical" href="https://san4o-0.github.io/CBHTMLCSS_web/Lab4/">
-  <meta property="og:title" content="FlowTask – Project Management for Teams That Ship Every Week">
-  <meta property="og:description" content="Boards, automations and reports in one tool. Plans from $10 per month, with a free 14-day trial.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://san4o-0.github.io/CBHTMLCSS_web/Lab4/">
-  <meta property="og:image" content="https://san4o-0.github.io/CBHTMLCSS_web/Lab4/img/hero.jpg">
+  <title>FlowTask</title>
+  <meta name="robots" content="noindex">
   <link rel="icon" href="img/logo.svg" type="image/svg+xml">
-  <link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/styles.css">
-  <script src="js/main.js" defer></script>
+  <script src="js/main.js"></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "FlowTask",
+    "@type": "Product",
+    "name": "FlowTask Pro",
     "description": "Project management for teams that ship every week.",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web",
-    "offers": [
-      {
-        "@type": "Offer",
-        "name": "Basic",
-        "price": "10.00",
-        "priceCurrency": "USD"
-      },
-      {
-        "@type": "Offer",
-        "name": "Pro",
-        "price": "29.00",
-        "priceCurrency": "USD"
-      },
-      {
-        "@type": "Offer",
-        "name": "Enterprise",
-        "price": "99.00",
-        "priceCurrency": "USD"
-      }
-    ]
+    "brand": {
+      "@type": "Brand",
+      "name": "FlowTask"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "1284"
+    },
+    "offers": {
+      "@type": "Offer",
+      "price": "19.00",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    }
   }
   </script>
 </head>
 <body>
 
-<aside class="promo" aria-label="Seasonal offer">
-  <strong>Autumn offer</strong> 3 months of Pro for the price of one. <a href="#pricing">See plans</a>
-</aside>
-
 <header class="site-header">
   <div class="site-header__inner">
     <img class="logo" src="img/logo.svg" alt="FlowTask" width="132" height="28">
 
-    <nav class="nav" aria-label="Main">
-      <a class="nav-item" href="#features">Product</a>
-      <a class="nav-item" href="#pricing">Pricing</a>
-      <a class="nav-item" href="#faq">FAQ</a>
-      <a class="nav-item" href="#trial">Trial</a>
+    <nav class="nav" role="navigation" aria-label="Main navigation">
+      <div class="nav-item" data-target="features">Product</div>
+      <div class="nav-item" data-target="pricing">Pricing</div>
+      <div class="nav-item" data-target="faq">FAQ</div>
+      <div class="nav-item" data-target="trial">Trial</div>
     </nav>
 
     <div class="site-header__actions">
       <a class="link-quiet" href="about.html">About</a>
-      <a class="link-quiet" href="#">Sign in</a>
-      <a class="btn btn--primary" href="#trial">Get started</a>
+      <a class="link-quiet" href="#" aria-label="Sign in">Sign in</a>
+      <button class="btn btn--primary" role="button" aria-label="Get started button" id="header-cta">Get started</button>
     </div>
   </div>
 </header>
@@ -79,27 +61,27 @@
         <h1>FlowTask</h1>
         <p class="hero__lead">Plan the week, run the sprint and ship on Friday — without three
           different tools arguing about who owns what.</p>
-        <a class="button button--primary button--lg" href="#trial">Get started</a>
+        <div class="button button--primary button--lg" id="hero-cta">Get started</div>
         <p class="hero__note muted">Free for 14 days. No credit card required.</p>
       </div>
-      <img class="hero__image" src="img/hero.jpg" alt="FlowTask board with four columns of task cards" width="1200" height="750" fetchpriority="high">
+      <img class="hero__image" src="img/hero.jpg">
     </div>
   </section>
 
   <section class="section section--alt" id="features">
     <div class="shell">
       <div class="section__head">
-        <h2>Why FlowTask?</h2>
+        <h4>Why FlowTask?</h4>
         <p class="muted">Three things teams ask us for, built in rather than bolted on.</p>
       </div>
 
       <div class="grid-3">
         <div class="card">
-          <img class="card__icon" src="img/feature-1.svg" alt="" width="40" height="40">
+          <img class="card__icon" src="img/feature-1.svg" alt="icon" width="40" height="40">
           <h3>Boards that match your process</h3>
           <p class="soft">Columns, swimlanes and WIP limits you can change on a Monday morning
             without filing a ticket with anyone.</p>
-          <a class="card__link" href="#">Learn more<span class="visually-hidden"> about boards</span></a>
+          <a class="card__link" href="#">Learn more</a>
         </div>
 
         <div class="card">
@@ -107,7 +89,7 @@
           <h3>Automations without scripts</h3>
           <p class="muted">Move a card, notify a channel, close the loop. Rules are plain
             sentences, so the whole team can read them.</p>
-          <a class="card__link" href="#">Learn more<span class="visually-hidden"> about automations</span></a>
+          <a class="card__link" href="#">Learn more</a>
         </div>
 
         <div class="card">
@@ -115,7 +97,7 @@
           <h3>Reports that answer questions</h3>
           <p class="muted">Cycle time, throughput and the one chart your manager actually opens
             before the weekly review.</p>
-          <a class="card__link" href="#">Learn more<span class="visually-hidden"> about reports</span></a>
+          <a class="card__link" href="#">Learn more</a>
         </div>
       </div>
     </div>
@@ -149,7 +131,7 @@
         </div>
       </div>
 
-      <p><a href="#pricing">See the full plan comparison</a></p>
+      <p><a href="#pricing-details">See the full plan comparison</a></p>
     </div>
   </section>
 
@@ -170,7 +152,7 @@
             <li>Basic support</li>
           </ul>
           <div class="plan__cta">
-            <a class="card__link" href="#trial">Choose Basic</a>
+            <a class="card__link" href="#">Read more</a>
           </div>
         </div>
 
@@ -184,7 +166,7 @@
             <li>Automations</li>
           </ul>
           <div class="plan__cta">
-            <a class="card__link" href="#trial">Choose Pro</a>
+            <a class="card__link" href="#">Read more</a>
           </div>
         </div>
 
@@ -198,7 +180,7 @@
             <li>SSO and audit log</li>
           </ul>
           <div class="plan__cta">
-            <a class="card__link" href="#trial">Choose Enterprise</a>
+            <a class="card__link" href="#">Read more</a>
           </div>
         </div>
       </div>
@@ -258,7 +240,7 @@
       <div class="faq">
 
       <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="false">Can I move my data out again?</button>
+        <button class="faq__q" type="button" aria-expanded="true">Can I move my data out again?</button>
         <div class="faq__a">
           <p>Yes. Every board exports to CSV and JSON, including comments and history, and the
             export runs on demand rather than on a schedule.</p>
@@ -266,7 +248,7 @@
       </div>
 
       <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="false">Do you offer a student plan?</button>
+        <button class="faq__q" type="button" aria-expanded="true">Do you offer a student plan?</button>
         <div class="faq__a">
           <p>Students and non-profits get Pro at no cost for a year. Write to us from an
             institutional address and we will switch the workspace over.</p>
@@ -274,7 +256,7 @@
       </div>
 
       <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="false">Where is my data stored?</button>
+        <button class="faq__q" type="button" aria-expanded="true">Where is my data stored?</button>
         <div class="faq__a">
           <p>In the EU by default. Enterprise workspaces can pin storage to a specific region and
             receive an audit log of every access.</p>
@@ -282,7 +264,7 @@
       </div>
 
       <div class="faq__item">
-        <button class="faq__q" type="button" aria-expanded="false">What happens after the trial?</button>
+        <button class="faq__q" type="button" aria-expanded="true">What happens after the trial?</button>
         <div class="faq__a">
           <p>The workspace becomes read-only for thirty days. Nothing is deleted until you ask us
             to delete it.</p>
@@ -300,15 +282,11 @@
           on the last day.</p>
 
         <form class="trial__form" id="trial-form">
-          <label class="visually-hidden" for="trial-name">Your name</label>
-          <input class="trial__input" id="trial-name" type="text" name="name" placeholder="Your name" autocomplete="name">
-          <label class="visually-hidden" for="trial-email">Work email</label>
-          <input class="trial__input" id="trial-email" type="email" name="email" placeholder="Work email" autocomplete="email" required>
-          <label class="visually-hidden" for="trial-company">Company</label>
-          <input class="trial__input" id="trial-company" type="text" name="company" placeholder="Company" autocomplete="organization">
-          <button class="button button--invert" type="submit">Start free trial</button>
+          <input class="trial__input" type="text" name="name" placeholder="Your name">
+          <input class="trial__input" type="email" name="email" placeholder="Work email">
+          <input class="trial__input" type="text" name="company" placeholder="Company">
+          <div class="button button--invert" role="button" tabindex="0" id="trial-submit">Start free trial</div>
         </form>
-        <p class="trial__status" id="trial-status" role="status"></p>
       </div>
     </div>
   </section>
@@ -322,17 +300,17 @@
         <img src="img/logo.svg" alt="FlowTask" width="132" height="28">
         <p class="muted">Project management for teams that ship every week.</p>
         <div class="social">
-          <a href="#" aria-label="FlowTask on X">
+          <a href="#">
             <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
               <path d="M10.6 7.6 15.3 2h-1.5l-4 4.9L6.4 2H2l5 7.3L2 15.5h1.5l4.2-5.2 3.5 5.2H16l-5.4-7.9Z" fill="#374151"/>
             </svg>
           </a>
-          <a href="#" aria-label="FlowTask on GitHub">
+          <a href="#">
             <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
               <path d="M9 1.5a7.5 7.5 0 0 0-2.4 14.6c.4.1.5-.2.5-.4v-1.4c-2 .4-2.5-.5-2.7-1-.1-.3-.6-1-1-1.2-.3-.2-.8-.6 0-.6.7 0 1.2.7 1.4 1 .8 1.3 2 1 2.5.7.1-.6.3-1 .6-1.2-1.8-.2-3.7-.9-3.7-4 0-.9.3-1.6.8-2.2-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.4 7.4 0 0 1 4 0c1.5-1 2.2-.8 2.2-.8.5 1.1.2 1.9.1 2.1.5.6.8 1.3.8 2.2 0 3.1-1.9 3.8-3.7 4 .3.3.6.8.6 1.6v2.3c0 .2.1.5.5.4A7.5 7.5 0 0 0 9 1.5Z" fill="#374151"/>
             </svg>
           </a>
-          <a href="#" aria-label="FlowTask on LinkedIn">
+          <a href="#">
             <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true">
               <path d="M3.4 6.4h2.8v9H3.4v-9Zm1.4-4.2a1.6 1.6 0 1 1 0 3.2 1.6 1.6 0 0 1 0-3.2ZM8 6.4h2.7v1.2h.1c.4-.7 1.3-1.4 2.7-1.4 2.9 0 3.4 1.8 3.4 4.2v4.9h-2.8v-4.4c0-1 0-2.4-1.5-2.4s-1.7 1.1-1.7 2.3v4.5H8v-9Z" fill="#374151"/>
             </svg>
