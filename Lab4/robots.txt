@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /admin/
-
-Sitemap: https://san4o-0.github.io/CBHTMLCSS_web/Lab4/sitemap.xml
