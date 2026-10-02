@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://san4o-0.github.io/CBHTMLCSS_web/Lab7/sitemap.xml
