@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Challenge 8 — Debug the Layout (зламана версія)</title>
+    <style>
+      /* Базове оформлення — НЕ є частиною помилок */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background-color: #f5f6f8;
+        color: #1a1f26;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        line-height: 1.5;
+      }
+
+      .sidebar,
+      .main {
+        padding: 16px;
+      }
+
+      .sidebar {
+        background-color: #e4e9f2;
+      }
+
+      .card {
+        padding: 16px;
+        border: 1px solid #dde1e7;
+        border-radius: 8px;
+        background-color: #ffffff;
+      }
+
+      .card h3 {
+        margin-block: 0 4px;
+      }
+
+      .card p {
+        margin: 0;
+      }
+
+      /* ---------- Навмисно закладені помилки (з умови Challenge 8) ---------- */
+
+      .page {
+        width: 1200px;
+        display: grid;
+        grid-template-columns: 300px 1fr;
+      }
+
+      .main {
+        width: 1000px;
+      }
+
+      .cards {
+        display: flex;
+        gap: 24px;
+      }
+
+      .card {
+        width: 350px;
+      }
+
+      .hero h1 {
+        font-size: 64px;
+        white-space: nowrap;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <aside class="sidebar">
+        <h2>Sidebar</h2>
+        <p><a href="./">← Усі challenges</a></p>
+        <p><a href="08-debug-fixed.html">Виправлена версія →</a></p>
+      </aside>
+
+      <main class="main">
+        <section class="hero">
+          <h1>Debug the responsive layout</h1>
+          <p>Відкрийте DevTools і знайдіть, що створює horizontal scroll.</p>
+        </section>
+
+        <div class="cards">
+          <article class="card">
+            <h3>Card 1</h3>
+            <p>Grid і Flexbox overlay.</p>
+          </article>
+          <article class="card">
+            <h3>Card 2</h3>
+            <p>Box model і computed width.</p>
+          </article>
+          <article class="card">
+            <h3>Card 3</h3>
+            <p>Першопричина, а не симптом.</p>
+          </article>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

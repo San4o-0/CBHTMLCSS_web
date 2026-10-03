@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Challenge 1 — Flexbox: responsive header</title>
+    <link rel="stylesheet" href="../base.css" />
+    <style>
+      .header {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px 24px;
+        padding-block: 12px;
+        padding-inline: 16px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background-color: var(--surface);
+      }
+
+      .logo {
+        color: var(--accent);
+        font-size: 1.25rem;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      /*
+        flex-basis 20rem — «бажана» ширина навігації. Коли в рядку немає місця
+        для logo + 20rem + кнопки, навігація сама переходить на новий рядок.
+        flex-grow: 1 — забирає вільне місце, тому кнопка притискається праворуч.
+      */
+      .navigation {
+        display: flex;
+        flex: 1 1 20rem;
+        flex-wrap: wrap;
+        gap: 4px 20px;
+      }
+
+      .navigation a {
+        padding-block: 4px;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      .navigation a:hover,
+      .navigation a:focus-visible {
+        color: var(--accent);
+        text-decoration: underline;
+      }
+
+      .header-action {
+        margin-inline-start: auto;
+        padding-block: 8px;
+        padding-inline: 16px;
+        border: 0;
+        border-radius: 6px;
+        background-color: var(--accent);
+        color: #fff;
+        font: inherit;
+        font-weight: 600;
+        white-space: nowrap;
+        cursor: pointer;
+      }
+
+      .narrow {
+        max-inline-size: 26rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a href="./">← Усі challenges</a>
+      <h1>Challenge 1. Flexbox: responsive header</h1>
+      <p class="lead">
+        Звужуйте вікно: спершу кнопка переходить на другий рядок, потім навігація відривається від
+        логотипа. Жодної media query, жодного <code>position: absolute</code>.
+      </p>
+
+      <section class="demo">
+        <h2>Header на всю ширину</h2>
+        <header class="header">
+          <a class="logo" href="#">WebLab</a>
+
+          <nav class="navigation" aria-label="Основна навігація">
+            <a href="#">Home</a>
+            <a href="#">Projects</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+          </nav>
+
+          <button class="header-action" type="button">Get started</button>
+        </header>
+      </section>
+
+      <section class="demo">
+        <h2>Той самий header у вузькому контейнері (26rem)</h2>
+        <p class="hint">
+          Показує перенесення без зміни розміру вікна: flex реагує на доступне місце, а не на
+          viewport.
+        </p>
+        <div class="narrow">
+          <header class="header">
+            <a class="logo" href="#">WebLab</a>
+
+            <nav class="navigation" aria-label="Навігація у вузькому прикладі">
+              <a href="#">Home</a>
+              <a href="#">Projects</a>
+              <a href="#">About</a>
+              <a href="#">Contact</a>
+            </nav>
+
+            <button class="header-action" type="button">Get started</button>
+          </header>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

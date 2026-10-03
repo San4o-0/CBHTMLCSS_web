@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Challenge 4 — Subgrid: aligned cards</title>
+    <link rel="stylesheet" href="../base.css" />
+    <style>
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+        gap: 24px;
+      }
+
+      .card {
+        display: grid;
+        gap: 8px;
+        padding: 16px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background-color: var(--bg);
+      }
+
+      .card h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        line-height: 1.25;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--text-muted);
+      }
+
+      .card a {
+        justify-self: start;
+        font-weight: 600;
+      }
+
+      /* Крок 1 — без subgrid: кожна картка рахує свої рядки сама */
+      .cards--nested .card {
+        grid-template-rows: auto 1fr auto;
+      }
+
+      /* Крок 2 — subgrid: картка займає 3 рядки батька і використовує їх */
+      .cards--subgrid .card {
+        grid-row: span 3;
+        grid-template-rows: subgrid;
+      }
+
+      /* Перемикач підсвітки рядків для порівняння */
+      .show-rows .card h3 {
+        outline: 2px dashed var(--accent);
+      }
+
+      .show-rows .card p {
+        outline: 2px dashed #d08a1a;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="show-rows">
+      <a href="./">← Усі challenges</a>
+      <h1>Challenge 4. Subgrid: aligned cards</h1>
+      <p class="lead">
+        Пунктир показує межі заголовка (синій) і тексту (жовтий). Порівняйте, де починається текст у
+        сусідніх картках.
+      </p>
+
+      <section class="demo">
+        <h2>Крок 1. Без subgrid: <code>grid-template-rows: auto 1fr auto</code></h2>
+        <p class="hint">
+          Кнопки Read more внизу вирівняні, але заголовки різної висоти зсувають текст.
+        </p>
+        <div class="cards cards--nested">
+          <article class="card">
+            <h3>CSS Grid</h3>
+            <p>Двовимірна сітка.</p>
+            <a href="#">Read more</a>
+          </article>
+          <article class="card">
+            <h3>Container Queries для reusable компонентів</h3>
+            <p>
+              Компонент змінює layout залежно від ширини свого контейнера, а не всього вікна
+              браузера.
+            </p>
+            <a href="#">Read more</a>
+          </article>
+          <article class="card">
+            <h3>Fluid typography: clamp(), rem і vw без зайвих breakpoint-ів</h3>
+            <p>Плавний розмір тексту.</p>
+            <a href="#">Read more</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="demo">
+        <h2>Крок 2. Subgrid: <code>grid-row: span 3; grid-template-rows: subgrid</code></h2>
+        <p class="hint">
+          Рядки належать <code>.cards</code>: висота рядка заголовка однакова для всіх карток у
+          ряду. Заголовки, тексти і Read more — на одних рівнях, без фіксованих висот.
+        </p>
+        <div class="cards cards--subgrid">
+          <article class="card">
+            <h3>CSS Grid</h3>
+            <p>Двовимірна сітка.</p>
+            <a href="#">Read more</a>
+          </article>
+          <article class="card">
+            <h3>Container Queries для reusable компонентів</h3>
+            <p>
+              Компонент змінює layout залежно від ширини свого контейнера, а не всього вікна
+              браузера.
+            </p>
+            <a href="#">Read more</a>
+          </article>
+          <article class="card">
+            <h3>Fluid typography: clamp(), rem і vw без зайвих breakpoint-ів</h3>
+            <p>Плавний розмір тексту.</p>
+            <a href="#">Read more</a>
+          </article>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

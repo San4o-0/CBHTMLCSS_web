@@ -1,0 +1,214 @@
+<!doctype html>
+<!--
+  Challenge 9, фінальна версія після власної перевірки та AI code review.
+  Кожна зміна відносно 09-ai-dashboard-original.html пояснена в NOTES.md.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f6f9;
+      }
+
+      /* Каркас — Grid замість position: fixed + margin-left/margin-top */
+      .layout {
+        display: grid;
+        grid-template-areas:
+          'header'
+          'sidebar'
+          'main';
+        grid-template-rows: auto auto 1fr;
+        min-block-size: 100dvh;
+      }
+
+      /* Одна media query — лише для зміни структури (sidebar ліворуч) */
+      @media (width >= 48rem) {
+        .layout {
+          grid-template-areas:
+            'header header'
+            'sidebar main';
+          grid-template-columns: minmax(12rem, 16rem) minmax(0, 1fr);
+          grid-template-rows: auto 1fr;
+        }
+      }
+
+      .header {
+        grid-area: header;
+        position: sticky;
+        top: 0;
+        z-index: 1;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 8px 16px;
+        padding-block: 12px;
+        padding-inline: 20px;
+        background-color: #2c3e50;
+        color: white;
+      }
+
+      .header .logo {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      .header .user {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      /* На мобільному — горизонтальна навігація, а не display: none */
+      .sidebar {
+        grid-area: sidebar;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        padding: 12px;
+        background-color: #34495e;
+      }
+
+      @media (width >= 48rem) {
+        .sidebar {
+          flex-direction: column;
+          padding: 20px;
+        }
+      }
+
+      .sidebar a {
+        padding: 10px;
+        border-radius: 4px;
+        color: #ecf0f1;
+        text-decoration: none;
+      }
+
+      .sidebar a:hover,
+      .sidebar a:focus-visible {
+        background-color: #2c3e50;
+      }
+
+      .main {
+        grid-area: main;
+        padding: 20px;
+      }
+
+      .main h1 {
+        margin-block-end: 20px;
+        font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2rem);
+      }
+
+      /* Кількість колонок — властивість сітки, 4 media queries більше не потрібні */
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(14rem, 100%), 1fr));
+        gap: 20px;
+      }
+
+      .card-wrapper {
+        container: stat / inline-size;
+      }
+
+      .card {
+        padding: clamp(15px, 4cqi, 20px);
+        border-radius: 8px;
+        background-color: white;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .card h3 {
+        margin-block-end: 10px;
+        font-size: 1.125rem;
+      }
+
+      .card p {
+        color: #595959;
+        font-size: 0.875rem;
+      }
+
+      /* Широка картка: назва ліворуч, значення праворуч */
+      @container stat (width > 22rem) {
+        .card {
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          gap: 16px;
+        }
+
+        .card h3 {
+          margin-block-end: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <header class="header">
+        <div class="logo">Dashboard</div>
+        <div class="user">
+          <span>John Doe</span>
+          <button type="button">Logout</button>
+        </div>
+      </header>
+
+      <nav class="sidebar" aria-label="Main">
+        <a href="#">Overview</a>
+        <a href="#">Analytics</a>
+        <a href="#">Reports</a>
+        <a href="#">Settings</a>
+      </nav>
+
+      <main class="main">
+        <h1>Overview</h1>
+        <div class="cards">
+          <div class="card-wrapper">
+            <div class="card">
+              <h3>Users</h3>
+              <p>1,250 active users</p>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="card">
+              <h3>Revenue</h3>
+              <p>$12,400 this month</p>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="card">
+              <h3>Orders</h3>
+              <p>320 new orders</p>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="card">
+              <h3>Conversion</h3>
+              <p>3.2% conversion rate</p>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="card">
+              <h3>Sessions</h3>
+              <p>8,900 sessions</p>
+            </div>
+          </div>
+          <div class="card-wrapper">
+            <div class="card">
+              <h3>Bounce rate</h3>
+              <p>41% bounce rate</p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

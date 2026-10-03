@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Challenge 8 — Debug the Layout (виправлена версія)</title>
+    <style>
+      /* Базове оформлення — без змін */
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        background-color: #f5f6f8;
+        color: #1a1f26;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        line-height: 1.5;
+      }
+
+      .sidebar,
+      .main {
+        padding: 16px;
+      }
+
+      .sidebar {
+        background-color: #e4e9f2;
+      }
+
+      .card {
+        padding: 16px;
+        border: 1px solid #dde1e7;
+        border-radius: 8px;
+        background-color: #ffffff;
+      }
+
+      .card h3 {
+        margin-block: 0 4px;
+      }
+
+      .card p {
+        margin: 0;
+      }
+
+      /* ---------- Мінімальні виправлення (було → стало — див. NOTES.md) ---------- */
+
+      .page {
+        /* було: width: 1200px — сторінка ширша за будь-який телефон */
+        max-inline-size: 1200px;
+        margin-inline: auto;
+        display: grid;
+        /* було: 300px 1fr — на 360px sidebar забирав 300px. Мобільний — одна колонка */
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      /* Sidebar поруч із main лише тоді, коли для обох є місце */
+      @media (width >= 48rem) {
+        .page {
+          grid-template-columns: minmax(12rem, 1fr) minmax(0, 3fr);
+        }
+      }
+
+      .main {
+        /* було: width: 1000px — прибрано, grid-item сам займає ширину своєї колонки */
+        min-inline-size: 0;
+      }
+
+      .cards {
+        display: flex;
+        /* додано: картки переносяться замість того, щоб вилазити */
+        flex-wrap: wrap;
+        gap: 24px;
+      }
+
+      .card {
+        /* було: width: 350px — тепер «бажана» ширина, яка може стиснутися і розтягнутися */
+        flex: 1 1 14rem;
+      }
+
+      .hero h1 {
+        /* було: 64px + white-space: nowrap — рядок не міг перенестися */
+        font-size: clamp(2rem, 1rem + 4vw, 4rem);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <aside class="sidebar">
+        <h2>Sidebar</h2>
+        <p><a href="./">← Усі challenges</a></p>
+        <p><a href="08-debug-broken.html">← Зламана версія</a></p>
+      </aside>
+
+      <main class="main">
+        <section class="hero">
+          <h1>Debug the responsive layout</h1>
+          <p>Відкрийте DevTools і знайдіть, що створює horizontal scroll.</p>
+        </section>
+
+        <div class="cards">
+          <article class="card">
+            <h3>Card 1</h3>
+            <p>Grid і Flexbox overlay.</p>
+          </article>
+          <article class="card">
+            <h3>Card 2</h3>
+            <p>Box model і computed width.</p>
+          </article>
+          <article class="card">
+            <h3>Card 3</h3>
+            <p>Першопричина, а не симптом.</p>
+          </article>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

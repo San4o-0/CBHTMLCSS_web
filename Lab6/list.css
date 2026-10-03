@@ -1,0 +1,30 @@
+/* Список-зміст для index-сторінок ЛР-6 */
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.list a {
+  display: block;
+  block-size: 100%;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--surface);
+  color: inherit;
+  text-decoration: none;
+}
+
+.list a:hover,
+.list a:focus-visible {
+  border-color: var(--accent);
+}
+
+.list strong {
+  display: block;
+  color: var(--accent);
+}

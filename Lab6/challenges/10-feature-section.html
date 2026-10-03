@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Challenge 10 — Responsive Feature Section</title>
+    <link rel="stylesheet" href="../base.css" />
+    <style>
+      /* ---------- Секція: Grid ---------- */
+      .feature-section {
+        display: grid;
+        gap: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+        padding-block: clamp(1.5rem, 1rem + 3vw, 3rem);
+        padding-inline: clamp(1rem, 0.5rem + 3vw, 3rem);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background-color: var(--surface);
+      }
+
+      .feature-section__head {
+        display: grid;
+        gap: 8px;
+        max-inline-size: 60ch;
+      }
+
+      /* Fluid typography */
+      .feature-section__title {
+        margin: 0;
+        font-size: clamp(1.75rem, 1.2rem + 2.4vw, 3rem);
+        line-height: 1.15;
+      }
+
+      .feature-section__description {
+        margin: 0;
+        color: var(--text-muted);
+        font-size: clamp(1rem, 0.9rem + 0.4vw, 1.2rem);
+      }
+
+      /* Сітка карток: auto-fit + minmax, 3 колонки на desktop, 1 на mobile */
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(16rem, 100%), 1fr));
+        gap: 20px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      /* ---------- Картка: Container Query (іменований контейнер) ---------- */
+      .feature {
+        container: feature / inline-size;
+      }
+
+      .feature__inner {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        block-size: 100%;
+        padding: 20px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background-color: var(--bg);
+      }
+
+      /* Flexbox: іконка + заголовок */
+      .feature__head {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 12px;
+      }
+
+      .feature__icon {
+        display: grid;
+        flex-shrink: 0;
+        place-items: center;
+        inline-size: 48px;
+        block-size: 48px;
+        border-radius: 12px;
+        background-color: var(--item);
+        color: var(--accent);
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .feature__title {
+        margin: 0;
+        /* Container query units: заголовок залежить від ширини картки */
+        font-size: clamp(1.1rem, 0.8rem + 3cqi, 1.5rem);
+      }
+
+      .feature__text {
+        margin: 0;
+        color: var(--text-muted);
+      }
+
+      .feature__link {
+        margin-block-start: auto;
+        font-weight: 600;
+      }
+
+      /* Широка картка (mobile, 1 колонка): іконка ліворуч від заголовка */
+      @container feature (width > 24rem) {
+        .feature__head {
+          flex-direction: row;
+          align-items: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a href="./">← Усі challenges</a>
+      <h1>Challenge 10. Responsive Feature Section</h1>
+      <p class="lead">
+        Grid + Flexbox + <code>auto-fit/minmax()</code> + <code>clamp()</code> + іменований
+        Container Query + <code>cqi</code>. Жодної media query.
+      </p>
+
+      <section class="feature-section" aria-labelledby="features-title">
+        <div class="feature-section__head">
+          <h2 class="feature-section__title" id="features-title">Layout, який адаптується сам</h2>
+          <p class="feature-section__description">
+            Три інструменти сучасного CSS, які замінюють більшість breakpoint-ів.
+          </p>
+        </div>
+
+        <ul class="features">
+          <li class="feature">
+            <article class="feature__inner">
+              <div class="feature__head">
+                <span class="feature__icon" aria-hidden="true">#</span>
+                <h3 class="feature__title">Grid з auto-fit</h3>
+              </div>
+              <p class="feature__text">
+                Кількість колонок залежить від доступного місця, а не від списку breakpoint-ів.
+              </p>
+              <a class="feature__link" href="02-cards.html">Challenge 2 →</a>
+            </article>
+          </li>
+          <li class="feature">
+            <article class="feature__inner">
+              <div class="feature__head">
+                <span class="feature__icon" aria-hidden="true">@</span>
+                <h3 class="feature__title">Container Queries</h3>
+              </div>
+              <p class="feature__text">
+                Компонент дивиться на свій контейнер і однаково добре працює в sidebar, main чи
+                modal.
+              </p>
+              <a class="feature__link" href="05-container-card.html">Challenge 5 →</a>
+            </article>
+          </li>
+          <li class="feature">
+            <article class="feature__inner">
+              <div class="feature__head">
+                <span class="feature__icon" aria-hidden="true">A</span>
+                <h3 class="feature__title">Fluid typography</h3>
+              </div>
+              <p class="feature__text">
+                clamp() змінює розмір тексту плавно і тримає його між мінімумом та максимумом.
+              </p>
+              <a class="feature__link" href="07-fluid-typography.html">Challenge 7 →</a>
+            </article>
+          </li>
+        </ul>
+      </section>
+    </main>
+  </body>
+</html>

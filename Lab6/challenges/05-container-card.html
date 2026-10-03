@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Challenge 5 — Container Query: reusable Card</title>
+    <link rel="stylesheet" href="../base.css" />
+    <style>
+      /*
+        Іменований контейнер. Скорочення container: <name> / <type>
+        = container-name: card + container-type: inline-size.
+        container-type стоїть на обгортці, бо @container стилізує НАЩАДКІВ контейнера.
+      */
+      .card-wrapper {
+        container: card / inline-size;
+      }
+
+      /* ---------- Компонент: за замовчуванням вертикальний ---------- */
+
+      .product-card {
+        display: grid;
+        gap: 12px;
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background-color: var(--bg);
+      }
+
+      .product-card__media {
+        aspect-ratio: 4 / 3;
+        border-radius: 8px;
+        background: linear-gradient(135deg, var(--accent), var(--item-alt));
+      }
+
+      .product-card__body {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+      }
+
+      .product-card__title {
+        margin: 0;
+        font-size: 1.1rem;
+      }
+
+      .product-card__price {
+        margin: 0;
+        color: var(--accent);
+        font-weight: 700;
+      }
+
+      .product-card__text {
+        margin: 0;
+        color: var(--text-muted);
+      }
+
+      .product-card__button {
+        align-self: start;
+        margin-block-start: 4px;
+        padding-block: 8px;
+        padding-inline: 14px;
+        border: 0;
+        border-radius: 6px;
+        background-color: var(--accent);
+        color: #fff;
+        font: inherit;
+        cursor: pointer;
+      }
+
+      /* ---------- Широкий контейнер: зображення + текст в один ряд ---------- */
+
+      @container card (width > 500px) {
+        .product-card {
+          grid-template-columns: auto 1fr;
+          align-items: start;
+        }
+
+        .product-card__media {
+          inline-size: 12rem;
+        }
+      }
+
+      /* ---------- Контексти, у які вставлено ту саму картку ---------- */
+
+      .content-layout {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .sidebar {
+        flex: 1 1 16rem;
+      }
+
+      .main-column {
+        flex: 3 1 24rem;
+      }
+
+      .modal {
+        max-inline-size: 36rem;
+        margin-inline: auto;
+        padding: 16px;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        background-color: var(--surface);
+        box-shadow: 0 12px 32px rgb(0 0 0 / 0.25);
+      }
+
+      .label {
+        margin-block: 0 8px;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a href="./">← Усі challenges</a>
+      <h1>Challenge 5. Container Query: reusable Card</h1>
+      <p class="lead">
+        Та сама <code>.product-card</code> з тим самим CSS у трьох місцях. Layout картки не має
+        жодної <code>@media</code> — лише <code>@container card (width &gt; 500px)</code>.
+      </p>
+
+      <section class="demo">
+        <h2>Sidebar + main</h2>
+        <div class="content-layout">
+          <aside class="sidebar" aria-label="Рекомендоване">
+            <p class="label">Sidebar</p>
+            <div class="card-wrapper">
+              <article class="product-card">
+                <div class="product-card__media"></div>
+                <div class="product-card__body">
+                  <h3 class="product-card__title">Навушники Flow</h3>
+                  <p class="product-card__price">2 499 ₴</p>
+                  <p class="product-card__text">Бездротові, 30 годин роботи.</p>
+                  <button class="product-card__button" type="button">У кошик</button>
+                </div>
+              </article>
+            </div>
+          </aside>
+
+          <!-- У розмітці завдання тут <main>; на сторінці вже є свій <main>, а він має бути один -->
+          <section class="main-column" aria-label="Основний вміст">
+            <p class="label">Main</p>
+            <div class="card-wrapper">
+              <article class="product-card">
+                <div class="product-card__media"></div>
+                <div class="product-card__body">
+                  <h3 class="product-card__title">Навушники Flow</h3>
+                  <p class="product-card__price">2 499 ₴</p>
+                  <p class="product-card__text">Бездротові, 30 годин роботи.</p>
+                  <button class="product-card__button" type="button">У кошик</button>
+                </div>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="demo">
+        <h2>Modal-like container (max 36rem)</h2>
+        <p class="hint">
+          Вікно ширше за 500px — картка горизонтальна. На телефоні modal звужується, і картка стає
+          вертикальною, хоча ні modal, ні картка нічого не знають про viewport.
+        </p>
+        <section class="modal" aria-label="Швидкий перегляд товару">
+          <p class="label">Quick view</p>
+          <div class="card-wrapper">
+            <article class="product-card">
+              <div class="product-card__media"></div>
+              <div class="product-card__body">
+                <h3 class="product-card__title">Навушники Flow</h3>
+                <p class="product-card__price">2 499 ₴</p>
+                <p class="product-card__text">Бездротові, 30 годин роботи.</p>
+                <button class="product-card__button" type="button">У кошик</button>
+              </div>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+  </body>
+</html>

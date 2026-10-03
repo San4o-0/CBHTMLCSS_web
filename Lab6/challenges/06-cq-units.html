@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Challenge 6 — Container Query units</title>
+    <link rel="stylesheet" href="../base.css" />
+    <style>
+      .card-wrapper {
+        container: card / inline-size;
+      }
+
+      .card {
+        display: grid;
+        gap: 8px;
+        padding: 12px;
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        background-color: var(--bg);
+      }
+
+      .card__title {
+        margin: 0;
+        line-height: 1.15;
+      }
+
+      /* Порівняння: той самий вираз, різні одиниці */
+      .card__title--vw {
+        font-size: clamp(1rem, 0.5rem + 3vw, 2.5rem);
+      }
+
+      .card__title--cqi {
+        font-size: clamp(1rem, 0.5rem + 6cqi, 2.5rem);
+      }
+
+      .card__text {
+        margin: 0;
+        color: var(--text-muted);
+      }
+
+      .readout {
+        font-family: monospace;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+
+      .pair {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: start;
+        gap: 16px;
+      }
+
+      .wide {
+        flex: 1 1 28rem;
+      }
+
+      .narrow {
+        flex: 0 1 16rem;
+      }
+
+      .resizable {
+        inline-size: 22rem;
+        min-inline-size: 12rem;
+        max-inline-size: 100%;
+        padding: 8px;
+        border: 2px dashed var(--accent);
+        overflow: auto;
+        resize: horizontal;
+      }
+
+      .label {
+        margin-block: 0 6px;
+        color: var(--text-muted);
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a href="./">← Усі challenges</a>
+      <h1>Challenge 6. Container Query units</h1>
+      <p class="lead">
+        <code>1cqi</code> = 1% inline-розміру найближчого контейнера, <code>1vw</code> = 1% ширини
+        viewport. Під кожним заголовком — його computed <code>font-size</code>.
+      </p>
+
+      <section class="demo">
+        <h2>A. <code>vw</code>: <code>clamp(1rem, 0.5rem + 3vw, 2.5rem)</code></h2>
+        <p class="hint">Широка і вузька картки мають однаковий заголовок: vw не знає про картку.</p>
+        <div class="pair">
+          <div class="wide">
+            <p class="label">Wide container</p>
+            <div class="card-wrapper">
+              <article class="card">
+                <h3 class="card__title card__title--vw" data-readout>Навушники Flow</h3>
+                <output class="readout"></output>
+                <p class="card__text">Бездротові, 30 годин роботи.</p>
+              </article>
+            </div>
+          </div>
+          <div class="narrow">
+            <p class="label">Narrow container</p>
+            <div class="card-wrapper">
+              <article class="card">
+                <h3 class="card__title card__title--vw" data-readout>Навушники Flow</h3>
+                <output class="readout"></output>
+                <p class="card__text">Бездротові, 30 годин роботи.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo">
+        <h2>B. <code>cqi</code>: <code>clamp(1rem, 0.5rem + 6cqi, 2.5rem)</code></h2>
+        <p class="hint">
+          У вузькій картці заголовок менший, у широкій — більший. Viewport той самий.
+        </p>
+        <div class="pair">
+          <div class="wide">
+            <p class="label">Wide container</p>
+            <div class="card-wrapper">
+              <article class="card">
+                <h3 class="card__title card__title--cqi" data-readout>Навушники Flow</h3>
+                <output class="readout"></output>
+                <p class="card__text">Бездротові, 30 годин роботи.</p>
+              </article>
+            </div>
+          </div>
+          <div class="narrow">
+            <p class="label">Narrow container</p>
+            <div class="card-wrapper">
+              <article class="card">
+                <h3 class="card__title card__title--cqi" data-readout>Навушники Flow</h3>
+                <output class="readout"></output>
+                <p class="card__text">Бездротові, 30 годин роботи.</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="demo">
+        <h2>C. Тягніть рамку: cqi реагує, vw — ні</h2>
+        <div class="card-wrapper resizable">
+          <article class="card">
+            <p class="label">cqi</p>
+            <h3 class="card__title card__title--cqi" data-readout>Навушники Flow</h3>
+            <output class="readout"></output>
+            <p class="label">vw</p>
+            <h3 class="card__title card__title--vw" data-readout>Навушники Flow</h3>
+            <output class="readout"></output>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const titles = document.querySelectorAll('[data-readout]');
+
+      function updateReadouts() {
+        titles.forEach((title) => {
+          title.nextElementSibling.textContent = `font-size: ${getComputedStyle(title).fontSize}`;
+        });
+      }
+
+      // ResizeObserver ловить і зміну вікна, і ручний resize рамки в прикладі C
+      const observer = new ResizeObserver(updateReadouts);
+      document.querySelectorAll('.card-wrapper').forEach((wrapper) => observer.observe(wrapper));
+      window.addEventListener('resize', updateReadouts);
+    </script>
+  </body>
+</html>

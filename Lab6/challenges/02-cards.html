@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Challenge 2 — Grid: adaptive card layout</title>
+    <link rel="stylesheet" href="../base.css" />
+    <style>
+      /*
+        min(220px, 100%) — захист від overflow: якщо контейнер вужчий за 220px,
+        колонка займає 100% замість того, щоб вилізти за межі.
+      */
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr));
+        gap: 16px;
+      }
+
+      .features--fill {
+        grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr));
+      }
+
+      .feature-card {
+        padding: 16px;
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        background-color: var(--bg);
+      }
+
+      .feature-card h3 {
+        margin-block: 0 4px;
+        font-size: 1.05rem;
+      }
+
+      .feature-card p {
+        margin: 0;
+        color: var(--text-muted);
+      }
+
+      .compare {
+        display: grid;
+        gap: 16px;
+      }
+
+      .compare h3 {
+        margin-block: 0 8px;
+        font-size: 0.95rem;
+      }
+
+      .compare > div {
+        padding: 8px;
+        border: 2px dashed var(--border);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a href="./">← Усі challenges</a>
+      <h1>Challenge 2. Grid: adaptive card layout</h1>
+      <p class="lead">
+        <code>repeat(auto-fit, minmax(min(220px, 100%), 1fr))</code> — кількість колонок рахує сам
+        Grid. Жодної media query.
+      </p>
+
+      <section class="demo">
+        <h2>Шість карток</h2>
+        <section class="features" aria-label="Можливості">
+          <article class="feature-card">
+            <h3>Flexbox</h3>
+            <p>Розкладка в один ряд або колонку.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Grid</h3>
+            <p>Сітка з рядків і колонок.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Media Queries</h3>
+            <p>Умови для структури сторінки.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Container Queries</h3>
+            <p>Компонент реагує на свій контейнер.</p>
+          </article>
+          <article class="feature-card">
+            <h3>clamp()</h3>
+            <p>Плавна типографіка з межами.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Subgrid</h3>
+            <p>Вирівнювання між картками.</p>
+          </article>
+        </section>
+      </section>
+
+      <section class="demo">
+        <h2>Експеримент: <code>auto-fit</code> vs <code>auto-fill</code> (2 картки)</h2>
+        <p class="hint">
+          З шістьма картками на звичайному екрані різниці не видно: вони заповнюють усі колонки.
+          Різниця з'являється, коли карток менше, ніж влазить колонок. Відкрийте на широкому екрані.
+        </p>
+        <div class="compare">
+          <div>
+            <h3>auto-fit: порожні колонки схлопуються, картки розтягуються</h3>
+            <div class="features">
+              <article class="feature-card">
+                <h3>Картка 1</h3>
+                <p>auto-fit</p>
+              </article>
+              <article class="feature-card">
+                <h3>Картка 2</h3>
+                <p>auto-fit</p>
+              </article>
+            </div>
+          </div>
+          <div>
+            <h3>auto-fill: порожні колонки лишаються, картки не ширші за свою колонку</h3>
+            <div class="features features--fill">
+              <article class="feature-card">
+                <h3>Картка 1</h3>
+                <p>auto-fill</p>
+              </article>
+              <article class="feature-card">
+                <h3>Картка 2</h3>
+                <p>auto-fill</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

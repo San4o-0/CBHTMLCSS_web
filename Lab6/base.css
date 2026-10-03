@@ -1,0 +1,97 @@
+/* Спільні стилі сторінок ЛР-6. Самі досліджувані layout-и — у <style> кожної сторінки. */
+
+:root {
+  color-scheme: light dark;
+  --bg: #f5f6f8;
+  --surface: #ffffff;
+  --text: #1a1f26;
+  --text-muted: #5b6472;
+  --border: #dde1e7;
+  --accent: #2f6feb;
+  --item: #dce7ff;
+  --item-alt: #ffe7c7;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #14181d;
+    --surface: #1d222a;
+    --text: #e8ebf0;
+    --text-muted: #9aa4b2;
+    --border: #2b323b;
+    --accent: #5c93ff;
+    --item: #22345a;
+    --item-alt: #4a3820;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding-block: 24px 48px;
+  padding-inline: 16px;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  line-height: 1.5;
+}
+
+body > main {
+  max-inline-size: 1100px;
+  margin-inline: auto;
+}
+
+a {
+  color: var(--accent);
+}
+
+h1 {
+  margin-block: 8px 4px;
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.lead {
+  margin-block: 0 16px;
+  color: var(--text-muted);
+}
+
+.demo {
+  margin-block: 24px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background-color: var(--surface);
+}
+
+.demo > h2 {
+  margin-block: 0 4px;
+  font-size: 1.1rem;
+}
+
+.hint {
+  margin-block: 0 12px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+code {
+  padding-inline: 4px;
+  border-radius: 4px;
+  background-color: var(--bg);
+  font-size: 0.9em;
+}
+
+.box {
+  padding: 12px;
+  border: 1px solid var(--accent);
+  border-radius: 6px;
+  background-color: var(--item);
+}
+
+.box--tall {
+  background-color: var(--item-alt);
+}

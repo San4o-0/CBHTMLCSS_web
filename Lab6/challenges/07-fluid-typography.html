@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Challenge 7 — Fluid Typography</title>
+    <link rel="stylesheet" href="../base.css" />
+    <style>
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 12px;
+      }
+
+      .hero h1 {
+        margin: 0;
+        line-height: 1.1;
+      }
+
+      .eyebrow {
+        margin: 0;
+        color: var(--accent);
+        font-size: 0.875rem;
+        font-weight: 600;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .hero-text {
+        margin: 0;
+        max-inline-size: 40ch;
+        color: var(--text-muted);
+      }
+
+      .button {
+        padding-block: 10px;
+        padding-inline: 18px;
+        border-radius: 6px;
+        background-color: var(--accent);
+        color: #fff;
+        font-weight: 600;
+        text-decoration: none;
+      }
+
+      /* ---------- До: breakpoint-based (початковий CSS із завдання) ---------- */
+
+      .hero--before h1 {
+        font-size: 32px;
+      }
+
+      .hero--before .hero-text {
+        font-size: 16px;
+      }
+
+      @media (width >= 768px) {
+        .hero--before h1 {
+          font-size: 44px;
+        }
+
+        .hero--before .hero-text {
+          font-size: 18px;
+        }
+      }
+
+      @media (width >= 1200px) {
+        .hero--before h1 {
+          font-size: 56px;
+        }
+
+        .hero--before .hero-text {
+          font-size: 20px;
+        }
+      }
+
+      /*
+        ---------- Після: fluid typography ----------
+        h1:   32px на 360px → 56px на 1280px. Нахил (56 − 32) / (1280 − 360) = 2.61vw,
+              зсув 32 − 0.0261 × 360 ≈ 22.6px = 1.41rem.
+        text: 16px на 360px → 20px на 1280px. Нахил 4 / 920 = 0.43vw, зсув ≈ 0.9rem.
+        Межі в rem, а в preferred є rem-складова — текст реагує і на налаштування
+        розміру шрифту в браузері.
+      */
+      .hero--after h1 {
+        font-size: clamp(2rem, 1.41rem + 2.61vw, 3.5rem);
+      }
+
+      .hero--after .hero-text {
+        font-size: clamp(1rem, 0.9rem + 0.43vw, 1.25rem);
+      }
+
+      .readout {
+        font-family: monospace;
+        font-size: 0.8rem;
+        color: var(--text-muted);
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <a href="./">← Усі challenges</a>
+      <h1>Challenge 7. Fluid Typography</h1>
+      <p class="lead">
+        Змінюйте ширину вікна. «До» стрибає на 768 і 1200px, «Після» змінюється плавно між 32 і
+        56px. Перевірка: DevTools → виберіть h1 → Computed → <code>font-size</code>.
+      </p>
+
+      <section class="demo">
+        <h2>До: 3 стани через <code>@media</code></h2>
+        <section class="hero hero--before" aria-label="Hero до">
+          <p class="eyebrow">Modern Web Development</p>
+          <h1 data-readout>Build interfaces that adapt to their environment.</h1>
+          <p class="hero-text">Responsive interfaces should adapt naturally to available space.</p>
+          <a class="button" href="#">Explore</a>
+          <output class="readout"></output>
+        </section>
+      </section>
+
+      <section class="demo">
+        <h2>Після: <code>clamp()</code>, жодної media query</h2>
+        <section class="hero hero--after" aria-label="Hero після">
+          <p class="eyebrow">Modern Web Development</p>
+          <h1 data-readout>Build interfaces that adapt to their environment.</h1>
+          <p class="hero-text">Responsive interfaces should adapt naturally to available space.</p>
+          <a class="button" href="#">Explore</a>
+          <output class="readout"></output>
+        </section>
+      </section>
+    </main>
+
+    <script>
+      const heroes = document.querySelectorAll('.hero');
+
+      function updateReadouts() {
+        heroes.forEach((hero) => {
+          const h1 = getComputedStyle(hero.querySelector('h1')).fontSize;
+          const text = getComputedStyle(hero.querySelector('.hero-text')).fontSize;
+          hero.querySelector('.readout').textContent =
+            `viewport: ${window.innerWidth}px → h1: ${h1}, hero-text: ${text}`;
+        });
+      }
+
+      window.addEventListener('resize', updateReadouts);
+      updateReadouts();
+    </script>
+  </body>
+</html>
