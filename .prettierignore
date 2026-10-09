@@ -1,3 +1,18 @@
 node_modules/
 Lab4-5/
 Lab4-starter/
+
+# Файли starter-ів, які за умовами ЛР-8 і ЛР-9 не змінюються в жодному коміті
+Lab8/test/
+Lab8/data/
+Lab8/main.js
+Lab8/index.html
+Lab9/check.html
+Lab9/check/
+Lab9/data/
+Lab9/src/state.js
+
+# Розмітка й стилі starter-а ЛР-9: без автоформатування, щоб diff «AI draft → fixes» був чистим
+Lab9/experiments.html
+Lab9/index.html
+Lab9/styles.css
