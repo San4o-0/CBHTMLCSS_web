@@ -18,7 +18,8 @@
 export function filterShows(shows, { query = null, genre = null, minRating = null } = {}) {
   // значення за замовчуванням не спрацьовує для null, тому ?? '' ще й тут
   const needle = (query ?? '').trim().toLowerCase();
-  const wantedGenre = (genre ?? '').trim();
+  // genre — точний збіг: без trim, «не задано» лише null і ''
+  const wantedGenre = genre ?? '';
 
   return shows.filter((show) => {
     if (needle && !show.name.toLowerCase().includes(needle)) return false;
