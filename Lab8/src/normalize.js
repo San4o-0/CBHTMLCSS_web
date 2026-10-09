@@ -28,5 +28,18 @@
  * @returns {Show}
  */
 export function normalizeShow(raw) {
-  throw new Error('Not implemented');
+  // "2008-01-20" → 2008; без дати — null, бо Number(null) дає 0, а new Date(null) — 1970
+  const year = raw.premiered ? Number(raw.premiered.slice(0, 4)) : null;
+
+  return {
+    id: raw.id,
+    name: raw.name,
+    year,
+    // ?? замість ||: оцінка 0 — це значення, а не його відсутність
+    rating: raw.rating?.average ?? null,
+    runtime: raw.runtime ?? null,
+    network: raw.network?.name ?? null,
+    // копія масиву, щоб результат не ділив посилання з вхідними даними
+    genres: [...(raw.genres ?? [])],
+  };
 }
