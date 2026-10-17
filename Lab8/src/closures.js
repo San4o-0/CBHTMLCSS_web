@@ -13,10 +13,8 @@
  * @returns {Counter}
  */
 export function createCounter(start = 0) {
-  // count живе в замиканні: кожен виклик createCounter створює власну змінну
   let count = start;
 
-  // стрілочні функції не залежать від this, тож методи працюють і після деструктуризації
   return {
     increment: () => ++count,
     reset: () => (count = start),
@@ -33,7 +31,6 @@ export function createCounter(start = 0) {
  * @returns {F}
  */
 export function once(fn) {
-  // окремий прапорець: перевірка result === undefined викликала б fn знову
   let called = false;
   let result;
 
@@ -55,11 +52,9 @@ export function once(fn) {
  * @returns {(arg: T) => R}
  */
 export function memoize(fn) {
-  // Map, а не {}: ключі об'єкта стають рядками, і 1 та '1' злилися б в один
   const cache = new Map();
 
   return (arg) => {
-    // has, а не if (cache.get(arg)): результати 0, false, undefined теж закешовані
     if (!cache.has(arg)) {
       cache.set(arg, fn(arg));
     }

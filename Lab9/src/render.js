@@ -1,31 +1,20 @@
 /** @typedef {import('./state.js').Show} Show */
 import { notes, shows, watchlist } from './state.js';
 
-const list = /** @type {HTMLUListElement} */ (document.querySelector('#results'));
-const status = /** @type {HTMLElement} */ (document.querySelector('#status'));
-const counter = /** @type {HTMLElement} */ (document.querySelector('#watchlist-count'));
-const template = /** @type {HTMLTemplateElement} */ (document.querySelector('#show-card'));
+const list = document.querySelector('#results');
+const status = document.querySelector('#status');
+const counter = document.querySelector('#watchlist-count');
+const template = document.querySelector('#show-card');
 
-/** Значення або «—», щоб на картці ніколи не було null, undefined чи NaN. */
-const orDash = (/** @type {unknown} */ value) =>
+const orDash = (value) =>
   value === null || value === undefined || value === '' ? '—' : String(value);
 
-/**
- * Записує текст у всі елементи картки з data-field="…". Лише textContent: розмітка в даних
- * залишається текстом.
- */
-function fill(
-  /** @type {Element} */ card,
-  /** @type {string} */ field,
-  /** @type {string} */ text,
-) {
+function fill(card, field, text) {
   for (const slot of card.querySelectorAll(`[data-field="${field}"]`)) slot.textContent = text;
 }
 
-/** Картка серіалу — клон шаблону #show-card. */
-function createCard(/** @type {Show} */ show) {
-  const fragment = /** @type {DocumentFragment} */ (template.content.cloneNode(true));
-  const card = /** @type {HTMLLIElement} */ (fragment.firstElementChild);
+function createCard(show) {
+  const card = template.content.cloneNode(true).firstElementChild;
   card.dataset.id = String(show.id);
 
   fill(card, 'name', show.name);
@@ -33,12 +22,12 @@ function createCard(/** @type {Show} */ show) {
   fill(card, 'genres', orDash(show.genres.join(', ')));
   fill(card, 'rating', orDash(show.rating));
 
-  const toggle = /** @type {HTMLButtonElement} */ (card.querySelector('[data-action="toggle"]'));
+  const toggle = card.querySelector('[data-action="toggle"]');
   toggle.setAttribute('aria-pressed', String(watchlist.has(show.id)));
 
   const note = notes.get(show.id);
-  const mine = /** @type {HTMLElement} */ (card.querySelector('.card__mine'));
-  const noteText = /** @type {HTMLElement} */ (card.querySelector('.card__note'));
+  const mine = card.querySelector('.card__mine');
+  const noteText = card.querySelector('.card__note');
   if (note) {
     fill(card, 'my-rating', String(note.rating));
     mine.hidden = false;
@@ -55,16 +44,13 @@ function createCard(/** @type {Show} */ show) {
  * @param {readonly Show[]} items серіали, які треба показати
  */
 export function renderShows(items) {
-  // replaceChildren замінює всі старі картки одним викликом — без циклу по live-колекції
   list.replaceChildren(...items.map(createCard));
-  // змінюється лише текст наявного live region, сам елемент #status лишається тим самим
   status.textContent = items.length
     ? `Знайдено: ${items.length} з ${shows.length}`
     : 'Нічого не знайдено';
   counter.textContent = String(watchlist.size);
 }
 
-/** Повідомлення в рядку статусу, наприклад після збереження нотатки. */
-export function announce(/** @type {string} */ message) {
+export function announce(message) {
   status.textContent = message;
 }
