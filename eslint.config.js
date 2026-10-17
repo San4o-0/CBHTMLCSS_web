@@ -21,8 +21,8 @@ export default [
     },
   },
   {
-    // ЛР-8 і ЛР-9 — ES-модулі (import/export)
-    files: ['Lab8/**/*.js', 'Lab9/**/*.js'],
+    // ЛР-8, ЛР-9 і ЛР-10 — ES-модулі (import/export)
+    files: ['Lab8/**/*.js', 'Lab9/**/*.js', 'Lab10/**/*.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
