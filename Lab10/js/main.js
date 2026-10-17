@@ -41,15 +41,13 @@ async function handleSearch(event) {
   venues = found;
   bindBookButtons();
   results.setAttribute('aria-busy', 'false');
+
+  // Status line, announced by screen readers (role="status")
+  const count = results.children.length;
+  status.textContent = count ? `Знайдено: ${count}` : 'Нічого не знайдено';
 }
 
 form.addEventListener('submit', handleSearch);
-
-// Status line, announced by screen readers (role="status")
-form.addEventListener('submit', () => {
-  const count = results.children.length;
-  status.textContent = count ? `Знайдено: ${count}` : 'Нічого не знайдено';
-});
 
 /* Booking */
 
