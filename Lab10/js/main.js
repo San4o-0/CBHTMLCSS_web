@@ -31,12 +31,16 @@ function readFilters() {
   return { city: form.city.value, sport: form.sport.value };
 }
 
+let lastSearch = 0;
+
 async function handleSearch(event) {
   event.preventDefault();
+  const search = ++lastSearch;
   status.textContent = 'Шукаємо…';
   results.setAttribute('aria-busy', 'true');
 
   const found = await fetchVenues(readFilters());
+  if (search !== lastSearch) return;
   renderResults(results, found);
   venues = found;
   bindBookButtons();
