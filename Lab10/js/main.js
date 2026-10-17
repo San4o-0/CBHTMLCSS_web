@@ -39,6 +39,7 @@ async function handleSearch(event) {
   const found = await fetchVenues(readFilters());
   renderResults(results, found);
   venues = found;
+  bindBookButtons();
   results.setAttribute('aria-busy', 'false');
 }
 
