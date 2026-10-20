@@ -3,7 +3,7 @@
  * Тут — обробники подій, життєвий цикл кожного запиту й стани областей #results і #details:
  * завантаження, результат, порожній результат, помилка. Специфікація — ТЗ, §3–4.
  */
-import { getShow, searchShows } from './api.js';
+import { ApiError, getShow, searchShows } from './api.js';
 import { renderResults, renderShow } from './view.js';
 
 const form = document.querySelector('#search');
@@ -18,6 +18,23 @@ function showTemplate(container, id, text) {
   const node = document.querySelector(id).content.cloneNode(true);
   if (text) node.querySelector('.state, .state__text').textContent = text;
   container.replaceChildren(node);
+}
+
+/** Текст помилки для користувача. */
+function errorMessage(error) {
+  if (error instanceof ApiError) {
+    if (error.status === 404) return 'Серіал не знайдено';
+    if (error.status === 429) return 'Забагато запитів. Спробуйте за хвилину.';
+    return `Помилка сервера TVmaze (${error.status}). Спробуйте пізніше.`;
+  }
+  if (error instanceof TypeError) return "Немає з'єднання з інтернетом.";
+  return `Сталася помилка: ${error.message}`;
+}
+
+/** Показує помилку з кнопкою «Спробувати ще», яка повторює retry(). */
+function showError(container, error, retry) {
+  showTemplate(container, '#state-error', errorMessage(error));
+  container.querySelector('[data-action="retry"]').addEventListener('click', retry);
 }
 
 let timer;
@@ -43,7 +60,6 @@ async function runSearch() {
 
   try {
     const shows = await searchShows(query, { signal: controller.signal });
-    results.removeAttribute('aria-busy');
     if (shows.length === 0) {
       const text = `Нічого не знайдено за запитом «${query}»`;
       showTemplate(results, '#state-message', text);
@@ -55,12 +71,14 @@ async function runSearch() {
   } catch (error) {
     if (error.name === 'AbortError') return;
     console.error(error);
-    status.textContent = 'Помилка пошуку';
+    showError(results, error, runSearch);
+    status.textContent = errorMessage(error);
+  } finally {
+    if (searchController === controller) results.removeAttribute('aria-busy');
   }
 }
 
 const details = document.querySelector('#details');
-
 const showCache = new Map();
 let showController;
 
@@ -80,13 +98,13 @@ async function openShow(id) {
   try {
     const data = await getShow(id, { signal: controller.signal });
     showCache.set(id, data);
-    details.removeAttribute('aria-busy');
     renderShow(details, data);
   } catch (error) {
     if (error.name === 'AbortError') return;
     console.error(error);
-    details.removeAttribute('aria-busy');
-    showTemplate(details, '#state-message', 'Не вдалося завантажити серіал');
+    showError(details, error, () => openShow(id));
+  } finally {
+    if (showController === controller) details.removeAttribute('aria-busy');
   }
 }
 
