@@ -4,7 +4,7 @@ import globals from 'globals';
 export default [
   {
     // Файли starter-ів ЛР-8/9, які за умовами не змінюються, — не наш код
-    ignores: ['Lab8/test/**', 'Lab8/main.js', 'Lab9/check/**', 'Lab9/src/state.js'],
+    ignores: ['Lab8/test/**', 'Lab8/main.js', 'Lab9/check/**', 'Lab9/src/state.js', 'Lab11/check/**', 'Lab11/src/view.js'],
   },
   js.configs.recommended,
   {
@@ -21,8 +21,8 @@ export default [
     },
   },
   {
-    // ЛР-8, ЛР-9 і ЛР-10 — ES-модулі (import/export)
-    files: ['Lab8/**/*.js', 'Lab9/**/*.js', 'Lab10/**/*.js'],
+    // ЛР-8 – ЛР-11 — ES-модулі (import/export)
+    files: ['Lab8/**/*.js', 'Lab9/**/*.js', 'Lab10/**/*.js', 'Lab11/**/*.js'],
     languageOptions: {
       ecmaVersion: 'latest',
       sourceType: 'module',
