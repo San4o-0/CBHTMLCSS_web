@@ -61,13 +61,31 @@ async function runSearch() {
 
 const details = document.querySelector('#details');
 
+const showCache = new Map();
+let showController;
+
 async function openShow(id) {
+  showController?.abort();
+
+  if (showCache.has(id)) {
+    details.removeAttribute('aria-busy');
+    renderShow(details, showCache.get(id));
+    return;
+  }
+
+  const controller = new AbortController();
+  showController = controller;
   showTemplate(details, '#state-loading');
+  details.setAttribute('aria-busy', 'true');
   try {
-    const data = await getShow(id);
+    const data = await getShow(id, { signal: controller.signal });
+    showCache.set(id, data);
+    details.removeAttribute('aria-busy');
     renderShow(details, data);
   } catch (error) {
+    if (error.name === 'AbortError') return;
     console.error(error);
+    details.removeAttribute('aria-busy');
     showTemplate(details, '#state-message', 'Не вдалося завантажити серіал');
   }
 }

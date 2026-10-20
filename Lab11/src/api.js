@@ -29,8 +29,8 @@ export async function searchShows(query, { signal } = {}) {
  * @returns {Promise<{ show: object, episodes: object[], cast: object[] }>}
  */
 export async function getShow(id, { signal } = {}) {
-  const show = await (await fetch(`${API}/shows/${id}`, { signal })).json();
-  const episodes = await (await fetch(`${API}/shows/${id}/episodes`, { signal })).json();
-  const cast = await (await fetch(`${API}/shows/${id}/cast`, { signal })).json();
+  const response = await fetch(`${API}/shows/${id}?embed[]=episodes&embed[]=cast`, { signal });
+  const show = await response.json();
+  const { episodes, cast } = show._embedded;
   return { show, episodes, cast };
 }
