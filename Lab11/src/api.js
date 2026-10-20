@@ -29,5 +29,8 @@ export async function searchShows(query, { signal } = {}) {
  * @returns {Promise<{ show: object, episodes: object[], cast: object[] }>}
  */
 export async function getShow(id, { signal } = {}) {
-  // TODO C2
+  const show = await (await fetch(`${API}/shows/${id}`, { signal })).json();
+  const episodes = await (await fetch(`${API}/shows/${id}/episodes`, { signal })).json();
+  const cast = await (await fetch(`${API}/shows/${id}/cast`, { signal })).json();
+  return { show, episodes, cast };
 }

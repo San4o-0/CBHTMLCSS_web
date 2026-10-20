@@ -59,8 +59,28 @@ async function runSearch() {
   }
 }
 
+const details = document.querySelector('#details');
+
+async function openShow(id) {
+  showTemplate(details, '#state-loading');
+  try {
+    const data = await getShow(id);
+    renderShow(details, data);
+  } catch (error) {
+    console.error(error);
+    showTemplate(details, '#state-message', 'Не вдалося завантажити серіал');
+  }
+}
+
 /** Підключає форму пошуку #search і області #results та #details. main.js викликає її один раз. */
 export function initApp() {
+  results.addEventListener('click', (event) => {
+    const button = event.target.closest('[data-action="open"]');
+    if (!button) return;
+    const id = Number(button.closest('[data-id]').dataset.id);
+    openShow(id);
+  });
+
   input.addEventListener('input', () => {
     clearTimeout(timer);
     timer = setTimeout(runSearch, DEBOUNCE_MS);
