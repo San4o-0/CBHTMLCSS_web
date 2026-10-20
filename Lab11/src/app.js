@@ -16,19 +16,21 @@ const MIN_LENGTH = 2;
 
 function showTemplate(container, id, text) {
   const node = document.querySelector(id).content.cloneNode(true);
-  if (text) node.querySelector('.state, .state__text').textContent = text;
+  if (text) (node.querySelector('.state__text') ?? node.querySelector('.state')).textContent = text;
   container.replaceChildren(node);
 }
 
+const TEXT_FAILED = 'Не вдалося отримати дані від TVmaze.';
+const TEXT_OFFLINE = "Немає з'єднання з TVmaze.";
+const TEXT_TOO_MANY = 'Забагато запитів до TVmaze.';
+const TEXT_RETRYING = 'Забагато запитів до TVmaze, повторюю…';
+const TEXT_NOT_FOUND = 'Серіал не знайдено';
+
 /** Текст помилки для користувача. */
 function errorMessage(error) {
-  if (error instanceof ApiError) {
-    if (error.status === 404) return 'Серіал не знайдено';
-    if (error.status === 429) return 'Забагато запитів. Спробуйте за хвилину.';
-    return `Помилка сервера TVmaze (${error.status}). Спробуйте пізніше.`;
-  }
-  if (error instanceof TypeError) return "Немає з'єднання з інтернетом.";
-  return `Сталася помилка: ${error.message}`;
+  if (error instanceof ApiError) return error.status === 429 ? TEXT_TOO_MANY : TEXT_FAILED;
+  if (error instanceof TypeError) return TEXT_OFFLINE;
+  return TEXT_FAILED;
 }
 
 /** Показує помилку з кнопкою «Спробувати ще», яка повторює retry(). */
@@ -59,7 +61,12 @@ async function runSearch() {
   status.textContent = 'Завантаження…';
 
   try {
-    const shows = await searchShows(query, { signal: controller.signal });
+    const shows = await searchShows(query, {
+      signal: controller.signal,
+      onRetry: () => {
+        status.textContent = TEXT_RETRYING;
+      },
+    });
     if (shows.length === 0) {
       const text = `Нічого не знайдено за запитом «${query}»`;
       showTemplate(results, '#state-message', text);
@@ -102,6 +109,10 @@ async function openShow(id) {
   } catch (error) {
     if (error.name === 'AbortError') return;
     console.error(error);
+    if (error instanceof ApiError && error.status === 404) {
+      showTemplate(details, '#state-message', TEXT_NOT_FOUND);
+      return;
+    }
     showError(details, error, () => openShow(id));
   } finally {
     if (showController === controller) details.removeAttribute('aria-busy');
