@@ -15,10 +15,7 @@ export const API = 'https://api.tvmaze.com';
  * @returns {Promise<object[]>}
  */
 export async function searchShows(query, { signal } = {}) {
-  const response = await fetch(`${API}/search/shows?q=${encodeURIComponent(query)}`, {
-    signal,
-    headers: { 'Content-Type': 'application/json' },
-  });
+  const response = await fetch(`${API}/search/shows?${new URLSearchParams({ q: query })}`, { signal });
   const data = await response.json();
   return data.map((item) => item.show);
 }
